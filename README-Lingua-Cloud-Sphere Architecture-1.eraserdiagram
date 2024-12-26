@@ -1,0 +1,115 @@
+cloud-architecture-diagram
+
+// Title
+title Lingua-Cloud-Sphere Architecture
+// styleMode watercolor
+direction right
+
+
+//Development
+Development [color : purple] {
+    Eraser [icon: eraser-io]
+    Whatapp [icon: whatsapp]
+    Trello [icon: trello]
+    Devs    [icon: user]
+    Figma [icon: figma]
+    Canva [icon: canva]
+    Github [icon: github]
+}
+
+// Frontend
+Frontend [color: blue] {
+  Frontend S3 Bucket [icon: aws-s3] // Hosting React App
+  React App [icon: react] // Deployed on S3
+  SSO with AWS Cognito [icon: aws-cognito] {
+    Google Auth [icon: google]
+    GitHub Auth [icon: github]
+  }
+}
+
+// Backend
+Backend [color: green] {
+  Cognito [icon: aws-cognito]
+  API Gateway [icon: aws-api-gateway] // entry point
+  Controller Lambda [icon: aws-lambda]
+  Upload Bucket [color : Yellow] {
+    OCR\nUploads [icon: folder]
+    Texttract\nUploads [icon: folder]
+    TTS\nOutput [icon: folder]
+    Rekognition\nUploads [icon: folder]
+    SST\nUploads [icon: folder]
+    S3 Bucket for Uploads [icon: aws-s3]
+  }
+  NLP Backend [color: red , icon: NLP] {
+    Comprehend Lambda [icon: aws-lambda] // AWS Comprehend
+    Textract Lambda [icon: aws-lambda] // AWS Textract
+    Polly Lambda [icon: aws-lambda] // AWS Polly
+    Recognition Lambda [icon: aws-lambda] // AWS Recognition
+    Transcribe Lambda [icon: aws-lambda] // AWS Transcribe
+    Translate Lambda [icon: aws-lambda] // AWS Translate
+    Custom NLP Lambda [icon: aws-lambda] // Custom NLP function
+    AWS Comprehend [icon: aws-comprehend]
+    Custom NLP Solutions [icon: aws-Lambda]
+    AWS Translate [icon: aws-translate]
+    AWS Transcribe [icon: aws-transcribe]
+    AWS Recognition [icon: aws-rekognition]
+    AWS Polly [icon: aws-polly]
+    AWS Textract [icon: aws-ekognition]
+  }
+
+   // Singleton bucket for results
+}
+
+Users [icon: users]
+// Connections
+Users <> Frontend S3 Bucket
+React App <> Frontend S3 Bucket
+React App > GitHub Auth
+React App > Google Auth
+SSO with AWS Cognito > API Gateway
+API Gateway <> Cognito
+API Gateway > Controller Lambda
+API Gateway <> Upload Bucket : UPLOAD
+
+// Development
+Github <> Frontend  : Push
+Github <> Backend : Push
+Trello <> Devs
+Figma <> Devs
+Github <> Devs
+Whatapp <> Devs
+Eraser <> Devs
+Canva <> Devs
+
+// Controller Lambda to NLP Backend
+Controller Lambda > Comprehend Lambda
+Controller Lambda > Textract Lambda
+Controller Lambda > Polly Lambda
+Controller Lambda > Recognition Lambda
+Controller Lambda > Transcribe Lambda
+Controller Lambda > Translate Lambda
+Controller Lambda > Custom NLP Lambda
+
+// NLP Backend to AWS Services
+Comprehend Lambda > AWS Comprehend [icon: aws-comprehend ]
+Textract Lambda > AWS Textract [icon: aws-textract]
+Polly Lambda > AWS Polly [icon: aws-polly]
+Recognition Lambda > AWS Recognition [icon: aws-recognition]
+Transcribe Lambda > AWS Transcribe [icon: aws-transcribe]
+Translate Lambda > AWS Translate [icon: aws-translate]
+Custom NLP Lambda > Custom NLP Solutions
+
+// All Lambdas storing results in S3
+Comprehend Lambda > OCR\nUploads
+Textract Lambda > Texttract\nUploads
+Polly Lambda > TTS\nOutput
+Recognition Lambda > Rekognition\nUploads
+Custom NLP Lambda > S3 Bucket for Uploads
+Transcribe Lambda > SST\nUploads
+
+// ALl folders connected
+SST\nUploads <> S3 Bucket for Uploads
+Texttract\nUploads <> S3 Bucket for Uploads
+TTS\nOutput <> S3 Bucket for Uploads
+OCR\nUploads <> S3 Bucket for Uploads
+Rekognition\nUploads <> S3 Bucket for Uploads

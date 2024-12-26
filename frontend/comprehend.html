@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comprehend Service</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tts.html">TTS</a></li>
+        <li><a href="sst.html">SST</a></li>
+        <li><a href="rekognition.html">Rekognition</a></li>
+        <li><a href="comprehend.html">Comprehend</a></li>
+        <li><a href="textract.html">Textract</a></li>
+        <li><a href="translate.html">Translate</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Comprehend Service</h1>
+      <form action="your-api-endpoint-for-comprehend" method="POST">
+        <label for="text">Text:</label>
+        <textarea id="text" name="text" required></textarea>
+
+        <label for="operation">Operation:</label>
+        <select id="operation" name="operation" required>
+          <option value="language">Language Detection</option>
+          <option value="sentiment">Sentiment Analysis</option>
+          <option value="entities">Entity Recognition</option>
+          <option value="key_phrases">Key Phrase Extraction</option>
+          <option value="syntax">Syntax Analysis</option>
+        </select>
+
+        <button type="submit">Analyze Text</button>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

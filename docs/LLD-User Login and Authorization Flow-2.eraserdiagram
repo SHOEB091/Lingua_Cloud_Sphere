@@ -1,0 +1,51 @@
+sequence-diagram
+
+// Title of the sequence diagram
+title User Login and Authorization Flow
+
+// Define actors with icons and colors
+User [icon: user, color: green]
+AWS Cognito [icon: aws-cognito, color: orange]
+Google [icon: google, color: red]
+GitHub [icon: github, color: black]
+Packet Server [icon: server, color: blue]
+AWS API Gateway [icon: aws-api-gateway, color: purple]
+
+// User initiates login
+User > AWS Cognito: Initiate login
+activate User
+
+// AWS Cognito interacts with identity providers
+alt [label: Choose Identity Provider] {
+  AWS Cognito > Google: Login with Google
+  Google > AWS Cognito: Return access token
+}
+else [label: Use GitHub] {
+  AWS Cognito > GitHub: Login with GitHub
+  GitHub > AWS Cognito: Return access token
+}
+
+// AWS Cognito returns access token to User
+AWS Cognito > User: Return access token
+deactivate User
+
+// User makes a request to Packet Server with access token
+User > Packet Server: Request with access token
+activate User
+
+// Packet Server checks with AWS API Gateway
+Packet Server > AWS API Gateway: Authorize request
+activate Packet Server
+
+// AWS API Gateway checks with AWS Cognito
+AWS API Gateway > AWS Cognito: Validate token
+AWS Cognito > AWS API Gateway: Token valid
+
+// AWS API Gateway authorizes the request
+AWS API Gateway > Packet Server: Request authorized
+deactivate Packet Server
+
+// Packet Server processes the request
+Packet Server > User: Return response
+deactivate User
+

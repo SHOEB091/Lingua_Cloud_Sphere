@@ -1,0 +1,53 @@
+entity-relationship-diagram
+
+title AWS Cognito Sign-up & Sign-in ERD
+// define tables
+users [icon: user, color: yellow]{
+  id string pk
+  username string
+  email string
+  password string
+  groupId string fk
+  MFA string 
+  appIntegrationId string fk
+}
+
+user_groups [icon: users, color: blue]{
+  id string pk
+  groupName string
+}
+
+app_integrations [icon: link, color: green]{
+  id string pk
+  appName string
+  clientId string
+  clientSecret string
+  userId string fk
+}
+
+tokens [icon: key, color: red]{
+  id string pk
+  accessToken string
+  refreshToken string
+  idToken string
+  userId string fk
+}
+
+// s3_buckets [icon: database, color: purple]{
+//   arn string 
+//   bucketName string pk
+//   folderId string fk
+// }
+
+// folders [icon: folder, color: orange]{
+//   id string pk
+//   folderName string
+// }
+// End of tables
+// define relationships
+users.groupId <> user_groups.id
+users.appIntegrationId > app_integrations.id
+app_integrations.userId > users.id
+tokens.userId > users.id
+// s3_buckets.folderId > folders.id
+

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Services</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.20/dist/aws-amplify.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tts.html">Text-to-Speech</a></li>
+        <li><a href="sst.html">Speech-to-Text</a></li>
+        <li><a href="rekognition.html">Rekognition</a></li>
+        <li><a href="comprehend.html">Comprehend</a></li>
+        <li><a href="textract.html">Textract</a></li>
+        <li><a href="translate.html">Translate</a></li>
+        <li><button id="login-button">Login</button></li>
+        <li><button id="signup-button">Sign Up</button></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>Welcome to AI Services Platform</h1>
+      <p>Select a service from the navigation bar to get started.</p>
+    </div>
+
+    <script>
+      // AWS Amplify Configuration
+      const amplifyConfig = {
+        Auth: {
+          region: "us-east-1", // Your AWS region
+          userPoolId: "us-east-1_0cBBpALSK", // Your User Pool ID
+          userPoolWebClientId: "4ag3iovbfrdsrfetcktf64n6nl", // Your Client ID
+          oauth: {
+            domain: "linguacloudsphere.auth.us-east-1.amazoncognito.com",
+            scope: ["email", "profile", "openid"],
+            redirectSignIn: "http://localhost:8000/",
+            redirectSignOut: "http://localhost:8000/",
+            responseType: "code",
+          },
+        },
+      };
+
+      // Configure Amplify
+      Amplify.configure(amplifyConfig);
+
+      const loginButton = document.getElementById("login-button");
+      const signupButton = document.getElementById("signup-button");
+
+      loginButton.onclick = () => {
+        Amplify.Auth.federatedSignIn({ provider: "COGNITO" });
+      };
+
+      signupButton.onclick = () => {
+        Amplify.Auth.federatedSignIn({ provider: "COGNITO" });
+      };
+
+      // Check for authentication code in the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get("code");
+
+      if (code) {
+        Amplify.Auth.federatedSignIn({ customProvider: "COGNITO", code })
+          .then((credentials) => {
+            console.log("Logged in successfully:", credentials);
+            // Store the token for authenticated API requests
+            localStorage.setItem(
+              "idToken",
+              credentials.signInUserSession.idToken.jwtToken
+            );
+          })
+          .catch((err) =>
+            console.error("Error during federated sign-in:", err)
+          );
+      }
+    </script>
+  </body>
+</html>

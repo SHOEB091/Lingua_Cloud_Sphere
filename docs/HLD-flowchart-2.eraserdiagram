@@ -1,0 +1,19 @@
+flowchart-diagram
+
+Title Process Flow Diagram
+
+// direction down
+
+Users [shape: oval, icon: user] > Front End Group [shape: rectangle, icon: monitor] : 1
+Front End Group > Front End Servers [shape: rectangle, icon: monitor] :2
+Front End Servers > Front End Server 1 [shape: rectangle, icon: monitor]
+Front End Servers > Front End Server 2 [shape: rectangle, icon: monitor]
+Front End Servers > Front End Server 3 [shape: rectangle, icon: monitor]
+Front End Group > API Gateway [shape: rectangle, icon: server]
+API Gateway > Backend Group [shape: rectangle, icon: cpu] :3
+Backend Group > Backend Servers [shape: rectangle, icon: cpu]:4
+Backend Servers > Backend Server 1 [shape: rectangle, icon: cpu]
+Backend Servers > Backend Server 2 [shape: rectangle, icon: cpu]
+Backend Servers > Backend Server 3 [shape: rectangle, icon: cpu]
+Backend Group > Storage Solution [shape: oval, icon: database] :5
+

@@ -1,0 +1,46 @@
+flowchart-diagram
+
+title Information Flow Diagram
+direction right
+
+// Define groups for better organization
+User Interaction [color: pink] {
+  User [icon: user]
+  Upload Application [icon: upload]
+  UserResult [icon: file]
+}
+
+Front End [color: lightblue] {
+  FrontendProcessData [icon: cpu]
+  FrontendSendToBackEnd [icon: send]
+  FrontendResult [icon:file]
+}
+
+Back End [color: lightgreen] {
+  BackendReceiveData [icon: download]
+  BackendProcessData [icon: settings]
+  BackendSendToStorage [icon: database]
+  BackendRetrieveFromStorage [icon: database]
+  BackendReturnResult [icon: reply]
+}
+
+Storage Solution [color: lightyellow] {
+  StorageStoreData [icon: save]
+  StorageRetrieveData [icon: folder-open]
+}
+
+// Define the flow
+User > Upload Application: Upload Data
+Upload Application > FrontendProcessData: Send Data
+FrontendProcessData > FrontendSendToBackEnd: Processed Data
+FrontendSendToBackEnd > BackendReceiveData: Send Data
+BackendReceiveData > BackendProcessData: Process Data
+BackendProcessData > BackendSendToStorage: Processed Data
+BackendSendToStorage > StorageStoreData: Store Data
+StorageStoreData > StorageRetrieveData: Retrieve Data
+StorageRetrieveData > BackendRetrieveFromStorage: Retrieved Data
+BackendRetrieveFromStorage > BackendReturnResult: Send Result
+BackendReturnResult > FrontendResult
+FrontendResult > UserResult
+User > UserResult
+

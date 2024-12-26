@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekognition Service</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tts.html">TTS</a></li>
+        <li><a href="sst.html">SST</a></li>
+        <li><a href="rekognition.html">Rekognition</a></li>
+        <li><a href="comprehend.html">Comprehend</a></li>
+        <li><a href="textract.html">Textract</a></li>
+        <li><a href="translate.html">Translate</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Rekognition Service</h1>
+      <form action="your-api-endpoint-for-rekognition" method="POST">
+        <label for="image_name">Image Name:</label>
+        <input type="text" id="image_name" name="image_name" required />
+
+        <label for="operation">Operation:</label>
+        <select id="operation" name="operation" required>
+          <option value="object_scene">Object and Scene Detection</option>
+          <option value="facial_analysis">Facial Analysis</option>
+          <option value="face_detection">Face Detection</option>
+          <option value="celebrity_recognition">Celebrity Recognition</option>
+          <option value="text_detection">Text Detection</option>
+        </select>
+
+        <button type="submit">Analyze Image</button>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

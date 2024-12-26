@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translate Service</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tts.html">TTS</a></li>
+        <li><a href="sst.html">SST</a></li>
+        <li><a href="rekognition.html">Rekognition</a></li>
+        <li><a href="comprehend.html">Comprehend</a></li>
+        <li><a href="textract.html">Textract</a></li>
+        <li><a href="translate.html">Translate</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Translate Service</h1>
+      <form
+        action="https://q2i3a0grja.execute-api.us-east-1.amazonaws.com/prod"
+        method="POST"
+      >
+        <label for="source_language">Source Language Code:</label>
+        <input
+          type="text"
+          id="source_language"
+          name="source_language"
+          required
+        />
+
+        <label for="target_language">Target Language Code:</label>
+        <input
+          type="text"
+          id="target_language"
+          name="target_language"
+          required
+        />
+
+        <label for="text">Text to Translate:</label>
+        <textarea id="text" name="text" required></textarea>
+
+        <button type="submit">Translate Text</button>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

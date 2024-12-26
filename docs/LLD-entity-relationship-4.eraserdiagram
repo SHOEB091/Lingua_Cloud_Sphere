@@ -1,0 +1,31 @@
+entity-relationship-diagram
+
+Title Blob Storage Data Model
+
+s3_buckets [icon:aws-s3 , color:blue ]{
+  accountId String pk
+  bucketName string fk
+}
+s3_bucket [icon: database, color: purple]{
+  arn string 
+  bucketName string pk
+  folderId string fk
+  objectId string fk
+}
+
+folders [icon: folder, color: orange]{
+  FolderObjectid string pk
+  folderName string
+}
+
+objects [icon: file , color:red]{
+  Objectid string pk
+  objectName string 
+  Data string
+}
+
+s3_buckets.bucketName < s3_bucket.bucketName
+s3_bucket.folderId  < folders.FolderObjectid
+s3_bucket.objectId  < objects.Objectid
+folders.FolderObjectid  < objects
+

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Textract Service</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tts.html">TTS</a></li>
+        <li><a href="sst.html">SST</a></li>
+        <li><a href="rekognition.html">Rekognition</a></li>
+        <li><a href="comprehend.html">Comprehend</a></li>
+        <li><a href="textract.html">Textract</a></li>
+        <li><a href="translate.html">Translate</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Textract Service</h1>
+      <form action="your-api-endpoint-for-textract" method="POST">
+        <label for="document_name">Document Name:</label>
+        <input type="text" id="document_name" name="document_name" required />
+
+        <label for="operation">Operation:</label>
+        <select id="operation" name="operation" required>
+          <option value="text">Text Detection</option>
+          <option value="forms">Form Extraction</option>
+          <option value="tables">Table Extraction</option>
+          <option value="handwriting">Handwriting Detection</option>
+        </select>
+
+        <button type="submit">Analyze Document</button>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+sequence-diagram
+
+title Backend Flow
+
+// Define actors with icons and colors
+User [icon: user, color: green]
+AWS API Gateway [icon: aws-api-gateway, color: purple]
+Controller Lambda [icon: aws-lambda, color: yellow]
+Translate [icon: aws-lambda, color: yellow]
+Rekognition [icon: aws-lambda, color: yellow]
+Comprehend [icon: aws-lambda, color: yellow]
+SST [icon: aws-lambda, color: yellow]
+TTS [icon: aws-lambda, color: yellow]
+TextTract [icon: aws-lambda, color: yellow]
+S3 Bucket [icon: aws-s3, color: brown]
+
+// User sends a request to AWS API Gateway
+User > AWS API Gateway: Send request
+activate User
+
+// AWS API Gateway routes the request to Controller Lambda
+AWS API Gateway -> Controller Lambda: Route request
+activate AWS API Gateway
+
+// Controller Lambda routes to different services
+par [label: Route to Services, color: blue] {
+  Controller Lambda > Translate: Process translation
+  Translate > Controller Lambda: Return translation result
+  and {
+    Controller Lambda > Rekognition: Process image recognition
+    Rekognition > Controller Lambda: Return recognition result
+  }
+  and {
+    Controller Lambda > Comprehend: Process text comprehension
+    Comprehend > Controller Lambda: Return comprehension result
+  }
+  and {
+    Controller Lambda > SST: Process speech synthesis
+    SST > Controller Lambda: Return synthesis result
+  }
+  and {
+    Controller Lambda > TTS: Process text-to-speech
+    TTS > Controller Lambda: Return text-to-speech result
+  }
+  and {
+    Controller Lambda > TextTract: Process text extraction
+    TextTract > Controller Lambda: Return extraction result
+  }
+}
+
+// Controller Lambda stores results in S3 Bucket if needed
+opt [label: Store in S3, color: lightblue] {
+  Controller Lambda > S3 Bucket: Store results
+  S3 Bucket > Controller Lambda: Results stored
+}
+
+// Controller Lambda returns final response to User
+Controller Lambda > User: Return final response
+deactivate Controller Lambda
+deactivate User
+
