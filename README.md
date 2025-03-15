@@ -49,10 +49,6 @@ ALL the Diagrams are present at [﻿LLD-HLD-Document](https://app.eraser.io/work
 
 ---
 
-# _**Presentation**_
-
-
-[﻿www.canva.com/design/DAGKorfbuz4/zS8CkDYmGJ6M6q3VyB8Y8Q/view?utm_content=DAGKorfbuz4&utm_campaign=designshare&utm_medium=link&utm_source=editor](https://www.canva.com/design/DAGKorfbuz4/zS8CkDYmGJ6M6q3VyB8Y8Q/view?utm_content=DAGKorfbuz4&utm_campaign=designshare&utm_medium=link&utm_source=editor) 
 
 ---
 
